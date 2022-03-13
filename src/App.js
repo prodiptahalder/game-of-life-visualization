@@ -105,7 +105,7 @@ function App() {
         <p class="justify-self-center">Dead Cells</p>
       </div>
       <p>
-      Each cell interacts with its eight neighbors (horizontal, vertical, diagonal) using the following four rules (taken from this Wikipedia article. <a class="text-red-300" href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank">Click Here</a>):
+      Each cell interacts with its eight neighbors (horizontal, vertical, diagonal) using the following four rules (taken from this Wikipedia article. <a class="text-red-300" href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank" rel="noreferrer">Click Here</a>):
       </p>
       <div class="justify-center mx-10 font-semibold text-lg">
         <ul>
