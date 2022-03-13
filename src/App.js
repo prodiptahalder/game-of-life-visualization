@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback } from 'react';
 import produce from 'immer';
+import '../src/assessts/tailwind.css';
 
 const numRows = 50;
 const numCols = 50;
@@ -71,37 +72,95 @@ function App() {
   },[]);
 
   return (
-    <div style={{
+    <div 
+      class="object-center"
+      style={{
       textAlign: 'center'
-    }}>
-    <h1 style={{color:"#288BA8"}}>Game Of Life</h1>
+      }}
+    >
+    <h1 class="justify-center my-3 text-3xl font-bold" style={{color:"#288BA8"}}> Game Of Life </h1>
+    
+    <div class="justify-center">
+      <p>
+      "The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970."
+      </p>
+      <div class="justify-center inline-grid grid-cols-2 gap-4">
+        <div
+          class="justify-self-center align-baseline"
+              style={{width:20, 
+                height:20, 
+                backgroundColor:"#288BA8", 
+                border: "solid 1px black"
+              }}
+        />
+        <p class="justify-self-center">Alive Cells</p>
+        <div
+          class="justify-self-center align-baseline"
+              style={{width:20, 
+                height:20, 
+                backgroundColor:undefined, 
+                border: "solid 1px black"
+              }}
+        />
+        <p class="justify-self-center">Dead Cells</p>
+      </div>
+      <p>
+      Each cell interacts with its eight neighbors (horizontal, vertical, diagonal) using the following four rules (taken from this Wikipedia article. <a class="text-red-300" href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank">Click Here</a>):
+      </p>
+      <div class="justify-center mx-10 font-semibold text-lg">
+        <ul>
+        <li>Any live cell with fewer than two live neighbors dies by under-population.</li>
+        <li>Any live cell with two or three live neighbors lives on to the next generation.</li>
+        <li>Any live cell with more than three live neighbors dies, by over-population.</li>
+        <li>Any dead cell with exactly three live neighbors becomes a live cell, by reproduction.</li>
+        </ul>
+      </div>
+      <br/>
+      
+      <h1 class="justify-center my-1 text-xl" style={{color:"#288BA8"}}>Instructions:</h1>
+      <p>
+        Click on the boxes to mark them as alive cells, you can also reset them to dead cells, by re-clicking on the alive cells.
+      </p>
+      <p>
+        Or
+      </p>
+      <p>
+        You can use the random button to randomly set some cells as alive cells.
+      </p>
+    </div>
+    <div class="justify-center my-2">
       <button
-        onClick={() => {
-          setRunning(!running);
-          if(!running) {
-            runningRef.current = true;
-            runSimulation();
+          class={`${running?"bg-red-500":"bg-sky-600"} hover:${running?"bg-red-700":"bg-sky-700"} px-6 py-2 mx-2 rounded-full text-white`}
+          onClick={() => {
+            setRunning(!running);
+            if(!running) {
+              runningRef.current = true;
+              runSimulation();
+            }
           }
-        }
-        }
-      >
-        {running?'stop':'start'}
-      </button>
-      <button
-        onClick={() => {
-          setGrid(generateRandomGrid());
-        }}
-      >
-        random
-      </button>
-      <button
-        onClick={() => {
-          setGrid(generateEmptyGrid());
-        }}
-      >
-        clear
-      </button>
+          }
+        >
+          {running?'stop':'start'}
+        </button>
+        <button
+          class="bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 px-6 py-2 mx-2 rounded-full text-white"
+          onClick={() => {
+            setGrid(generateRandomGrid());
+          }}
+        >
+          random
+        </button>
+        <button
+          class="bg-sky-600 hover:bg-sky-700 px-6 py-2 mx-2 rounded-full text-white"
+          onClick={() => {
+            setGrid(generateEmptyGrid());
+          }}
+        >
+          clear
+        </button>
+      </div>
       <div
+      class="my-4 justify-center"
       style={{ 
         display: 'grid',
         gridTemplateColumns: `repeat(${numCols}, 20px)`
@@ -117,7 +176,7 @@ function App() {
             })
             setGrid(newGrid);
           }} 
-          style={{width:18, 
+          style={{width:20, 
             height:20, 
             backgroundColor: grid[i][j]?"#288BA8":undefined, 
             border: "solid 1px black"
